@@ -1,0 +1,24 @@
+# Configuration for https://github.com/lycheeverse/lychee
+
+max_concurrency = 16
+max_retries = 3
+retry_wait_time = 5
+timeout = 30
+
+# 403/429 are common from sites with bot protection; they still exist.
+accept = ["200..=299", "403", "429"]
+
+user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
+
+exclude_path = ["CLAUDE.md"]
+
+exclude = [
+  # Badge endpoints for this repo do not exist until it is published.
+  "^https://github\\.com/vvs1off/awesome-osint",
+  # Verified manually in a browser; these reject automated requests (400/404 to bots).
+  "^https://gijn\\.org/",
+  "^https://transparency\\.meta\\.com/",
+  "^https://www\\.mapillary\\.com/",
+  # Frequently overloaded; returns intermittent 404/5xx.
+  "^https://crt\\.sh/",
+]
